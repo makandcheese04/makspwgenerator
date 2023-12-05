@@ -7,7 +7,7 @@ function generatePassword() {
   var possibleCharacters = [];
 
   // get input and validate
-  const numberOfCharacters = prompt("How many characters do you want in your password? Choose between 8-128 characters.");
+  numberOfCharacters = prompt("How many characters do you want in your password? Choose between 8-128 characters.");
   if (numberOfCharacters < 8 || numberOfCharacters > 128) {
     return "Please choose a valid number of characters.";
   } else if (isNaN(numberOfCharacters)) {
@@ -68,11 +68,11 @@ function generatePassword() {
     possibleCharacters = possibleCharacters.concat(specialCharacters);
   }
 
-  
+  // pick random cards out of new pool for length of password
   let finalPassword = ""
   for (let i = 0; i < numberOfCharacters; i++) {
     let rng =[Math.floor(Math.random() * possibleCharacters.length)];
-    
+    // or finalPassword += possibleCharacters[rng];
     finalPassword = finalPassword + possibleCharacters[rng];
   }
   return finalPassword;
@@ -85,9 +85,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
